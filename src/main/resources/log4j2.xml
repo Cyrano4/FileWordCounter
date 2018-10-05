@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="error">
+    <Properties>
+        <Property name="logDir">logs</Property>
+        <Property name="fileName">WordCounter.log</Property>
+    </Properties>
+    <Appenders>
+        <RollingRandomAccessFile name="fileLogger"
+            fileName="${logDir}/${fileName}" append="true"
+            filePattern="${logDir}/$${date:yyyy-MM}/${fileName}-%d{MM-dd-yyyy}-%i.log.gz">
+            <PatternLayout>
+                <pattern>%d{HH:mm:ss.SSS} | level=%-5p| thread=%t | class=%c | %msg%n</pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="250 MB" />
+            </Policies>
+            <DefaultRolloverStrategy max="10" />
+        </RollingRandomAccessFile>
+
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} | level=%-5p| thread=%t | class=%c | %msg%n"/>
+        </Console>
+
+    </Appenders>
+    <Loggers>
+        <AsyncRoot level="info" additivity="false">
+            <AppenderRef ref="fileLogger" />
+            <AppenderRef ref="console" />
+        </AsyncRoot>
+    </Loggers>
+</Configuration>

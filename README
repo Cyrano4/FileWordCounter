@@ -1,0 +1,6 @@
+FileWords Counter.
+
+Steps to Execute the application
+
+create /app/test/ directory and place the text(.txt/.rtf) file(s).
+mvn clean package exec:java -Dexec.mainClass="com.m800.demo.FileWordCounterApplication"
